@@ -21,11 +21,11 @@ NAGAD_NUMBER = "01788098356"
 DB_PATH = "shop.db"
 
 # ENV (IMPORTANT)
-TOKEN = "8315570920"
+TOKEN =
 os.environ["BOT_TOKEN"]
 PUBLIC_URL =
 os.environ["PUBLIC_URL"].rstrip("/")
-ADMIN_CHAT_ID = "8273597769"
+ADMIN_CHAT_ID =
 int(os.environ["ADMIN_CHAT_ID"])
 
 # Checkout states
@@ -605,3 +605,10 @@ checkout_conv = ConversationHandler(
 tg_app.add_handler(checkout_conv)
 tg_app.add_handler(CallbackQueryHandler(on_button))
 tg_app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, forward_live_chat))
+from fastapi import FastAPI
+
+api = FastAPI()
+
+@api.get("/")
+def home():
+    return {"status": "running"}
